@@ -19,28 +19,37 @@ function QuestionsMarks(str) {
     let num1 = 0;
     let isNum1found = false;
     let isNum2found = false;
+    let res = false;
   
     for ( let i = 0; i < str.length; i++ ) {
       // console.log("Round: ", i);
       if (/[0-9]/.test(str[i])) {
         if (!isNum1found) {
           num1 = str[i];
+          // console.log(num1);
           isNum1found = true;
-        } else {
-          isNum2found = true;
-          if (countQ >= 3) {
-            countQ = 0;
-            isNum2found = isNum2found = false;
-            return true;
+        } 
+        else {
+          // console.log("Sum is: ", parseInt(num1) + parseInt(str[i]));
+          if (( parseInt(num1) + parseInt(str[i]) == 10 )) {
+            if (countQ >= 3) {
+              res = true;
+            }
+            else {
+              return false;
+            }
           }
+          countQ = 0;
+          num1 = str[i];
         }
       }
   
       if (isNum1found == true && isNum2found == false && /\?/.test(str[i])) {
         countQ++;
+        // console.log("countQ: ", countQ);
       }
     }
-    return false;
+    return res;
   
   }
      
