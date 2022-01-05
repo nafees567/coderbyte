@@ -36,10 +36,11 @@ function FindIntersection(strArr) {
     }
   
     if (res) {
-      return res;
+        res = res.replace(/\s/g, "");
+        return res;
     }
     else {
-      return false;
+        return false;
     }
   
   }
