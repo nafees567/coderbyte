@@ -10,3 +10,39 @@ Output: false
 Input: "acc?7??sss?3rr1??????5"
 Output: true
 */
+
+function QuestionsMarks(str) { 
+
+    // code goes here  
+    // return str;
+    let countQ = 0;
+    let num1 = 0;
+    let isNum1found = false;
+    let isNum2found = false;
+  
+    for ( let i = 0; i < str.length; i++ ) {
+      // console.log("Round: ", i);
+      if (/[0-9]/.test(str[i])) {
+        if (!isNum1found) {
+          num1 = str[i];
+          isNum1found = true;
+        } else {
+          isNum2found = true;
+          if (countQ >= 3) {
+            countQ = 0;
+            isNum2found = isNum2found = false;
+            return true;
+          }
+        }
+      }
+  
+      if (isNum1found == true && isNum2found == false && /\?/.test(str[i])) {
+        countQ++;
+      }
+    }
+    return false;
+  
+  }
+     
+  // keep this function call here 
+  console.log(QuestionsMarks(readline()));
